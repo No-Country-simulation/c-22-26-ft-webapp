@@ -1,0 +1,61 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1e1e1e; /* Fondo oscuro */
+  }
+  
+  .login-form {
+    background: #2a2a2a; /* Fondo ligeramente más claro que el fondo principal */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Sombra más marcada */
+    width: 300px;
+  }
+  
+  .login-form h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  .login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #bbbbbb; /* Texto gris claro */
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #444444; /* Borde gris oscuro */
+    border-radius: 4px;
+    background-color: #333333; /* Fondo oscuro para los inputs */
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  .login-form input::placeholder {
+    color: #777777; /* Color para el texto de marcador */
+  }
+  
+  .login-form input:focus {
+    border-color: #007bff; /* Resalta el input activo */
+    outline: none;
+  }
+  
+  .login-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #007bff; /* Azul primario */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-form button:hover {
+    background-color: #0056b3; /* Azul más oscuro en hover */
+  }
+  
