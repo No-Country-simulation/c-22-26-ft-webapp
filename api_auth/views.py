@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework import status
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import SignUpSerializer, LoginSerializer
 
 
@@ -22,8 +22,18 @@ class LoginView(APIView):
 
 
 class LogoutView(APIView):
-    def get(self, request):
-        return Response({"message": "Logout"})
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        token = request.auth
+        if token:
+            token.delete()
+            return Response(
+                {"detail": "Successfully logged out."}, status=status.HTTP_200_OK
+            )
+        return Response(
+            {"detail": "No active session found."}, status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 class SignUpView(APIView):
