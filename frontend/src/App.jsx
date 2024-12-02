@@ -1,21 +1,22 @@
-import { useState } from 'react'
-import './App.css'
-import Login from './components/Login/Login';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./components/Login/Login";
+import Register from "./components/SignUp/Register";
 import Contact from "./components/Contact/Contact";
+import "./App.css"
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   return (
-    <>
-      {isAuthenticated ? (
-        <Contact/>
-      ) : (
-        <Login onLogin={() => setIsAuthenticated(true)} />
-      )}
-    </>
+    <Router>
+      <Routes>
+        {/* login */}
+        <Route path="/" element={<Login />} />
+        {/* Registro */}
+        <Route path="/signin" element={<Register />} />
+        {/* Main */}
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
   );
 }
 
-
-export default App
+export default App;

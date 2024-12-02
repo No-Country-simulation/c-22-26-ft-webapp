@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); // login
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ function Login({ onLogin }) {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("authToken", data.token);
-        onLogin();
+        navigate("/contact"); // Contact después de login
       } else {
         setErrorMessage("Usuario o contraseña incorrectos");
       }
@@ -69,6 +71,12 @@ function Login({ onLogin }) {
           />
         </div>
         <button type="submit">Entrar</button>
+        <p className="register-link">
+          ¿No tienes una cuenta?{" "}
+          <Link to="/signin" className="switch-link">
+            Regístrate
+          </Link>
+        </p>
       </form>
     </div>
   );
