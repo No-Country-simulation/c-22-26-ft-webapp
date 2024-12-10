@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "api_auth",
+    "workgroup",
 ]
 
 AUTH_USER_MODEL = "api_auth.User"
