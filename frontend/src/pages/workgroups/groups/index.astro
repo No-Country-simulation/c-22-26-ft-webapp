@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="Workgroups">
+  <h1>Workgroups</h1>
+  <div class="grid" id="workgroup-index"></div>
+</BaseLayout>
+<script>
+  const workgroupIndex = document.getElementById("workgroup-index");
+  const authToken = localStorage.getItem("auth_token");
+  const endpoint = `${import.meta.env.PUBLIC_API}/workgroup/groups/`;
+
+  function createWorkgroupCard(workgroup) {
+    const workgroupCard = document.createElement("article");
+
+    const cardHeader = document.createElement("header");
+    cardHeader.textContent = workgroup.name;
+    workgroupCard.appendChild(cardHeader);
+
+    if (workgroup.description) {
+      const cardDescription = document.createElement("p");
+      cardDescription.textContent = workgroup.description;
+      workgroupCard.appendChild(cardDescription);
+    }
+
+    if (workgroup.members.length) {
+      const listTitle = document.createElement("p");
+      listTitle.textContent = "Members:";
+      workgroupCard.appendChild(listTitle);
+      const workgroupMembers = document.createElement("ul");
+      workgroup.members.forEach((member) => {
+        const memberListItem = document.createElement("li");
+        memberListItem.textContent = member;
+        workgroupMembers.appendChild(memberListItem);
+      });
+      workgroupCard.appendChild(workgroupMembers);
+    }
+
+    workgroupIndex.appendChild(workgroupCard);
+  }
+
+  try {
+    const response = await fetch(endpoint, {
+      headers: {
+        Authorization: "Token " + authToken,
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      data.forEach((element) => {
+        createWorkgroupCard(element);
+      });
+    } else {
+      console.error(`Error: ${response.status} ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+</script>

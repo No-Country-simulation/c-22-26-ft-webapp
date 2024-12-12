@@ -36,6 +36,9 @@
   }
 
   if (authToken) {
+    const workgroupsLink = createListLink("Workgroups", "/workgroups/groups")
+    navbar.firstElementChild.appendChild(workgroupsLink);
+
     const logoutLink = createListLink("Logout", "/logout/");
     logoutLink.addEventListener("click", handleLogout);
     navbar.firstElementChild.appendChild(logoutLink);
