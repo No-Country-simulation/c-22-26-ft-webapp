@@ -1,0 +1,48 @@
+<nav id="navbar">
+  <ul>
+    <li><a href="/">Home</a></li>
+  </ul>
+</nav>
+<script>
+  const navbar = document.getElementById("navbar");
+  const authToken = localStorage.getItem("auth_token");
+
+  function createListLink(text, href) {
+    const link = document.createElement("li");
+    link.innerHTML = `<a href='${href}'>${text}</a>`;
+    return link;
+  }
+
+  async function handleLogout(event) {
+    event.preventDefault();
+    const endpoint = `${import.meta.env.PUBLIC_API}/auth/logout/`;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          Authorization: "Token " + authToken,
+        },
+      });
+      if (response.ok) {
+        localStorage.removeItem("auth_token");
+        window.location.href = "/";
+      } else {
+        console.error(`Error: ${response.status} ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  if (authToken) {
+    const logoutLink = createListLink("Logout", "/logout/");
+    logoutLink.addEventListener("click", handleLogout);
+    navbar.firstElementChild.appendChild(logoutLink);
+  } else {
+    navbar.firstElementChild.appendChild(createListLink("Login", "/login/"));
+    navbar.firstElementChild.appendChild(
+      createListLink("Sign Up", "/sign-up/"),
+    );
+  }
+</script>

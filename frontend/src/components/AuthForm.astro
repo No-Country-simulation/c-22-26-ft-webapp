@@ -1,0 +1,55 @@
+---
+const { formType } = Astro.props;
+const buttonText =
+  formType.charAt(0).toUpperCase() + formType.slice(1).replace("-", " ");
+---
+
+<form method="POST" id="auth-form" data-type={formType}>
+  <label>
+    Email:
+    <input id="email" name="email" required />
+  </label>
+  <label>
+    Password:
+    <input id="password" type="password" name="password" required />
+  </label>
+  <button type="submit">{buttonText}</button>
+</form>
+<script>
+  const authForm = document.getElementById("auth-form");
+  authForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const { email, password } = {
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+    };
+
+    if (!email || !password) {
+      console.error("Email and password are required");
+      return;
+    }
+
+    try {
+      const endpoint = `${import.meta.env.PUBLIC_API}/auth/${authForm.dataset.type}/`;
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("auth_token", data.token);
+        window.location.href = "/";
+      } else {
+        console.error(`Error: ${response.status} ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+</script>
