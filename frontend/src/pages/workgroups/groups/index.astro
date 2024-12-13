@@ -37,6 +37,19 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
       workgroupCard.appendChild(workgroupMembers);
     }
 
+    if (workgroup.tasks.length) {
+      const listTitle = document.createElement("p");
+      listTitle.textContent = "Tasks:";
+      workgroupCard.appendChild(listTitle);
+      const workgroupTasks = document.createElement("ul");
+      workgroup.tasks.forEach((task) => {
+        const taskListItem = document.createElement("li");
+        taskListItem.textContent = task;
+        workgroupTasks.appendChild(taskListItem);
+      });
+      workgroupCard.appendChild(workgroupTasks);
+    }
+
     workgroupIndex.appendChild(workgroupCard);
   }
 

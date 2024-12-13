@@ -9,11 +9,11 @@ class MemberListingField(serializers.RelatedField):
 
 class WorkgroupSerializer(serializers.ModelSerializer):
     members = MemberListingField(many=True, read_only=True)
+    tasks = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Workgroup
-        fields = ["name", "description", "members"]
-        depth = 1
+        fields = ["name", "description", "members", "tasks"]
 
 
 class TaskSerializer(serializers.ModelSerializer):
