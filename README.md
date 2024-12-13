@@ -2,6 +2,9 @@
 
 Aplicación web de organización de equipos y sus actividades, con conversión automática de zonas horarias y gestión de horarios disponibles
 
+## Integrantes
+- [Luis Felipe Azócar](https://github.com/lfazocar/)
+
 ## Stack
 - Frontend: [Astro 5.0.5](https://astro.build/) + [Pico CSS](https://picocss.com/)
 - Backend: [Django 5.1.3](https://www.djangoproject.com/)
@@ -103,3 +106,16 @@ Para producción Astro tiene multiples opciones dependiendo de la plataforma, re
 3. Desarrolla la tarea y haz un push de tu rama (`$ git push origin usuario-feature-10`)
 4. Abre un pull request y [conéctalo con tu tarea](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword). Mueve tu tarea a la columna "In review"
 5. Luego de que como equipo revisemos que este todo bien, se integra tu código a la rama de desarrollo y se pasa la tarea a la columna "Done"
+
+## Features planeadas
+### Esenciales
+- ❗ Diseño de la marca
+- ❗ Diseño de UI y UX
+- ❗ Vistas CRUD para grupos de trabajo y actividades en el frontend
+- ❗ Conversión de hora según zona horaria local en el frontend
+- ❗ Autenticación segura mediante cookies
+### Importantes
+- Mailer para registro de usuario, recuperación de contraseña y notificaciones
+- Chat en vivo para cada grupo de trabajo
+### Nice to have
+- Asistente AI para ayudar con la organización de actividades
