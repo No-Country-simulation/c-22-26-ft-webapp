@@ -1,0 +1,21 @@
+---
+import "../styles/pico.violet.min.css";
+import Navbar from "../components/Navbar.astro";
+const { pageTitle } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<main class="container">
+			<Navbar />
+			<slot />
+		</main>
+	</body>
+</html>
